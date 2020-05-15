@@ -24,13 +24,11 @@ jobs:
         pip install scikit-fem==1.0.0 jupyter matplotlib
 
     - name: Run notebook
-      env:
-        NREFS: 0
       run: |
-        jupyter nbconvert --to notebook --execute nitsche_corners.ipynb
+        jupyter nbconvert --to notebook --ExecutePreprocessor.timeout=600 --execute nitsche_corners.ipynb
         sh extract.sh
 
     - uses: actions/upload-artifact@v2
       with:
-        name: ex1
-        path: ex1*
+        name: ex2
+        path: ex2*
